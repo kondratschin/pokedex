@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    transition: 0.2s linear;
+    font-family: "Nunito";
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: "Grand Hotel";
+    src: url("./fonts/hotel.woff2") format('woff2');
+}
+
+
+@font-face {
+    font-family: "Nunito";
+    src: url("./fonts/NunitoSans-variable.woff2") format('woff2');
+}
+
+.container-fluid {
+    height: 4rem;
+    background-color: rgb(0, 0, 70);
+    color: #ffffff;
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-brand:hover {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.navbar-brand:focus, .navbar-brand:hover {
+    color: #ffffff;
+}
+
+.btn {
+    color: #ffffff;
+}

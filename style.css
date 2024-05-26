@@ -30,6 +30,7 @@
 .navbar-brand:hover {
     color: #ffffff;
     font-weight: 900;
+    display: flex;
 }
 
 .navbar-brand:focus, .navbar-brand:hover {
@@ -38,4 +39,12 @@
 
 .btn {
     color: #ffffff;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.poklogo {
+    padding: 0 0.5rem 0;
 }

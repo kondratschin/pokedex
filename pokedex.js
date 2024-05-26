@@ -5,3 +5,4 @@ async function loadData() {
     let responseToJson = await response.json();
     console.log(responseToJson);
 };
+

@@ -1,4 +1,4 @@
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=10";
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=10";
 
 
 async function loadData() {
@@ -41,24 +41,20 @@ async function fillCard() {
         let monPic = pokemon.sprites.other.home.front_default;
         let monName = pokemon.species.name;
         let monTypeOne = pokemon.types[0].type.name;
-        let monTypeTwo = pokemon.types[1] ? pokemon.types[1].type.name : null; // Check for second type
         let monNo = pokemon.id;
         monName = monName.charAt(0).toUpperCase() + monName.slice(1);
 
-        let card = `
-        <div class="card">
-            <div class="card-header">
-                <div id="card-no-${index}" class="left-text">${monNo}</div>
-                <div id="mo-name-${index}" class="centered-text">${monName}</div>
-            </div>
-            <div class="card-image" style="background-image: url('${monPic}');"></div>
-            <div class="card-icons">
-                <div class="types" id="type-one" style="background-image: url('img/${monTypeOne}.svg');"></div>
-                ${monTypeTwo ? `<div class="types" id="type-two" style="background-image: url('img/${monTypeTwo}.svg');"></div>` : ''}
-            </div>
-        </div>
-        `;
+        // Initialize monTypeTwo to null
+        let monTypeTwo = null;
+        // Check if the second type exists and assign its name to monTypeTwo
+        if (pokemon.types[1]) {
+            monTypeTwo = pokemon.types[1].type.name;
+        }
+
+        // Create the card HTML using the external function
+        let card = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo);
+
+        // Append the card to the content
         content.innerHTML += card;
     }
 }
-

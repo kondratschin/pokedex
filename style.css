@@ -113,9 +113,18 @@
     justify-content: space-around;
     padding: 10px;
     border-top: 1px solid #eee;
+    background: black;
+    height: 4rem;
 }
 
 .card-icons img {
     width: 30px;
     height: 30px;
+}
+
+.types {
+    height: 2rem;
+    width: 2rem;
+    background-position: center;
+    background-size: cover;
 }

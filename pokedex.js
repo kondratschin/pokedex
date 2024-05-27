@@ -39,7 +39,7 @@ async function fillCard() {
         let monPic = data.sprites.other.home.front_default;
         let monName = data.species.name;
         let monNo = data.id;
-
+        monName = monName.charAt(0).toUpperCase() + monName.slice(1);
         let card = `
         <div class="card">
             <div class="card-header">
@@ -58,5 +58,3 @@ async function fillCard() {
     }
 }
 
-// Call fillCard function to display the Pokémon data on the card
-fillCard();

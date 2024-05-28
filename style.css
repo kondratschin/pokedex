@@ -34,7 +34,8 @@
     display: flex;
 }
 
-.navbar-brand:focus, .navbar-brand:hover {
+.navbar-brand:focus,
+.navbar-brand:hover {
     color: #ffffff;
 }
 
@@ -75,6 +76,11 @@
     width: 300px;
     text-align: center;
     overflow: hidden;
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 5px 10px 10px #9E9E9E;
 }
 
 .card-header {
@@ -117,6 +123,10 @@
     align-items: center;
 }
 
+.card-image:hover {
+    transform: scale(1.05);
+}
+
 .mon-pic {
     height: 100%;
     width: 100%;
@@ -142,145 +152,181 @@
 }
 
 .grass {
-    background-color: rgba(40, 104, 8, 1); /* Grün */
+    background-color: rgba(40, 104, 8, 1);
+    /* Grün */
 }
 
 .fire {
-    background-color: rgba(240, 128, 48, 1); /* Rot */
+    background-color: rgba(240, 128, 48, 1);
+    /* Rot */
 }
 
 .water {
-    background-color: rgba(104, 144, 240, 1); /* Blau */
+    background-color: rgba(104, 144, 240, 1);
+    /* Blau */
 }
 
 .electric {
-    background-color: rgba(248, 208, 48, 1); /* Gelb */
+    background-color: rgba(248, 208, 48, 1);
+    /* Gelb */
 }
 
 .normal {
-    background-color: rgba(168, 168, 120, 1); /* Grau */
+    background-color: rgba(168, 168, 120, 1);
+    /* Grau */
 }
 
 .fighting {
-    background-color: rgba(192, 48, 40, 1); /* Dunkelrot */
+    background-color: rgba(192, 48, 40, 1);
+    /* Dunkelrot */
 }
 
 .flying {
-    background-color: rgba(168, 144, 240, 1); /* Violett */
+    background-color: rgba(168, 144, 240, 1);
+    /* Violett */
 }
 
 .poison {
-    background-color: rgba(160, 64, 160, 1); /* Lila */
+    background-color: rgba(160, 64, 160, 1);
+    /* Lila */
 }
 
 .ground {
-    background-color: rgba(224, 192, 104, 1); /* Braun-Gelb */
+    background-color: rgba(224, 192, 104, 1);
+    /* Braun-Gelb */
 }
 
 .rock {
-    background-color: rgba(184, 160, 56, 1); /* Braun-Grau */
+    background-color: rgba(184, 160, 56, 1);
+    /* Braun-Grau */
 }
 
 .bug {
-    background-color: rgba(168, 184, 32, 1); /* Grün-Gelb */
+    background-color: rgba(168, 184, 32, 1);
+    /* Grün-Gelb */
 }
 
 .ghost {
-    background-color: rgba(112, 88, 152, 1); /* Lila-Grau */
+    background-color: rgba(112, 88, 152, 1);
+    /* Lila-Grau */
 }
 
 .steel {
-    background-color: rgba(184, 184, 208, 1); /* Grau-Blau */
+    background-color: rgba(184, 184, 208, 1);
+    /* Grau-Blau */
 }
 
 .psychic {
-    background-color: rgba(248, 88, 136, 1); /* Rosa */
+    background-color: rgba(248, 88, 136, 1);
+    /* Rosa */
 }
 
 .ice {
-    background-color: rgba(152, 216, 216, 1); /* Blau-Grün */
+    background-color: rgba(152, 216, 216, 1);
+    /* Blau-Grün */
 }
 
 .dragon {
-    background-color: rgba(112, 56, 248, 1); /* Blau-Lila */
+    background-color: rgba(112, 56, 248, 1);
+    /* Blau-Lila */
 }
 
 .dark {
-    background-color: rgba(112, 88, 72, 1); /* Dunkelgrau */
+    background-color: rgba(112, 88, 72, 1);
+    /* Dunkelgrau */
 }
 
 .fairy {
-    background-color: rgba(238, 153, 172, 1); /* Rosa-Beige */
+    background-color: rgba(238, 153, 172, 1);
+    /* Rosa-Beige */
 }
 
 .grass_bg {
-    background-color: rgba(40, 104, 8, 0.5); /* Grün with 50% opacity */
+    background-color: rgba(40, 104, 8, 0.5);
+    /* Grün with 50% opacity */
 }
 
 .fire_bg {
-    background-color: rgba(240, 128, 48, 0.5); /* Rot with 50% opacity */
+    background-color: rgba(240, 128, 48, 0.5);
+    /* Rot with 50% opacity */
 }
 
 .water_bg {
-    background-color: rgba(104, 144, 240, 0.5); /* Blau with 50% opacity */
+    background-color: rgba(104, 144, 240, 0.5);
+    /* Blau with 50% opacity */
 }
 
 .electric_bg {
-    background-color: rgba(248, 208, 48, 0.5); /* Gelb with 50% opacity */
+    background-color: rgba(248, 208, 48, 0.5);
+    /* Gelb with 50% opacity */
 }
 
 .normal_bg {
-    background-color: rgba(168, 168, 120, 0.5); /* Grau with 50% opacity */
+    background-color: rgba(168, 168, 120, 0.5);
+    /* Grau with 50% opacity */
 }
 
 .fighting_bg {
-    background-color: rgba(192, 48, 40, 0.5); /* Dunkelrot with 50% opacity */
+    background-color: rgba(192, 48, 40, 0.5);
+    /* Dunkelrot with 50% opacity */
 }
 
 .flying_bg {
-    background-color: rgba(168, 144, 240, 0.5); /* Violett with 50% opacity */
+    background-color: rgba(168, 144, 240, 0.5);
+    /* Violett with 50% opacity */
 }
 
 .poison_bg {
-    background-color: rgba(160, 64, 160, 0.5); /* Lila with 50% opacity */
+    background-color: rgba(160, 64, 160, 0.5);
+    /* Lila with 50% opacity */
 }
 
 .ground_bg {
-    background-color: rgba(224, 192, 104, 0.5); /* Braun-Gelb with 50% opacity */
+    background-color: rgba(224, 192, 104, 0.5);
+    /* Braun-Gelb with 50% opacity */
 }
 
 .rock_bg {
-    background-color: rgba(184, 160, 56, 0.5); /* Braun-Grau with 50% opacity */
+    background-color: rgba(184, 160, 56, 0.5);
+    /* Braun-Grau with 50% opacity */
 }
 
 .bug_bg {
-    background-color: rgba(168, 184, 32, 0.5); /* Grün-Gelb with 50% opacity */
+    background-color: rgba(168, 184, 32, 0.5);
+    /* Grün-Gelb with 50% opacity */
 }
 
 .ghost_bg {
-    background-color: rgba(112, 88, 152, 0.5); /* Lila-Grau with 50% opacity */
+    background-color: rgba(112, 88, 152, 0.5);
+    /* Lila-Grau with 50% opacity */
 }
 
 .steel_bg {
-    background-color: rgba(184, 184, 208, 0.5); /* Grau-Blau with 50% opacity */
+    background-color: rgba(184, 184, 208, 0.5);
+    /* Grau-Blau with 50% opacity */
 }
 
 .psychic_bg {
-    background-color: rgba(248, 88, 136, 0.5); /* Rosa with 50% opacity */
+    background-color: rgba(248, 88, 136, 0.5);
+    /* Rosa with 50% opacity */
 }
 
 .ice_bg {
-    background-color: rgba(152, 216, 216, 0.5); /* Blau-Grün with 50% opacity */
+    background-color: rgba(152, 216, 216, 0.5);
+    /* Blau-Grün with 50% opacity */
 }
 
 .dragon_bg {
-    background-color: rgba(112, 56, 248, 0.5); /* Blau-Lila with 50% opacity */
+    background-color: rgba(112, 56, 248, 0.5);
+    /* Blau-Lila with 50% opacity */
 }
 
 .dark_bg {
-    background-color: rgba(112, 88, 72, 0.5); /* Dunkelgrau with 50% opacity */
+    background-color: rgba(112, 88, 72, 0.5);
+    /* Dunkelgrau with 50% opacity */
 }
 
 .fairy_bg {
-    background-color: rgba(238, 153, 172, 0.5); /* Rosa-Beige with 50% opacity */
+    background-color: rgba(238, 153, 172, 0.5);
+    /* Rosa-Beige with 50% opacity */
 }

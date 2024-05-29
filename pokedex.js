@@ -58,3 +58,22 @@ async function fillCard() {
         content.innerHTML += card;
     }
 }
+
+// async function loadDetail(index) {
+//     let MON_URL = `https://pokeapi.co/api/v2/pokemon/${index}/`;
+//     let response = await fetch(MON_URL);
+//     let pokemon = await response.json();
+//     let monPic = pokemon.sprites.other.home.front_default;
+//     let monName = pokemon.species.name;
+//     let row = pokemon.types[0].type.name;
+//     let monNo = pokemon.id;
+//     monName = monName.charAt(0).toUpperCase() + monName.slice(1);
+//     console.log(monPic);
+
+//     console.log(row);
+//     console.log(monName);
+//     console.log(monNo);
+
+// }
+
+

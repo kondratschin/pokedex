@@ -1,6 +1,6 @@
-function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo) {
+function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
     let card = `
-    <div onclick="loadDetail('${monNo}', '${monName}', '${monPic}', '${monTypeOne}', '${monTypeTwo}')" class="card">
+    <div onclick="loadDetail('${monNo}', '${monName}', '${monPic}', '${monTypeOne}', '${monTypeTwo}', '${monHgt}', '${monWgt}', '${monAblOne}', '${monAblTwo}')" class="card">
         <div class="card-header ${monTypeOne}">
             <div id="card-no-${index}" class="left-text">#${monNo}</div>
             <div id="mo-name-${index}" class="centered-text">${monName}</div>
@@ -27,9 +27,31 @@ function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo) {
     return card;
 }
 
-function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo) {
+function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
     let detailContent = document.getElementById('detail-popup');
-    detailContent.innerHTML =
+    detailContent.classList.remove('d-none');
+    // Initialize type details and type display
+    let typeTwoDetail = '';
+    let typeDisplay = monTypeOne;
+
+    // Check if monTypeTwo is not 'null' and update the details accordingly
+    if (monTypeTwo !== 'null') {
+        typeTwoDetail = `<div class="type-detail"><span class="type-flag ${monTypeTwo}">${monTypeTwo}</span></div>`;
+        typeDisplay += ` / ${monTypeTwo}`;
+    }
+
+    // Convert height to centimeters and format weight to two decimal places
+    let formattedHeight = (parseFloat(monHgt) / 10);
+    let formattedWeight = (parseFloat(monWgt) / 10);
+
+    // Initialize abilities display
+    let abilitiesDisplay = monAblOne;
+
+    // Check if monAblTwo is not 'null' and update the abilities display accordingly
+    if (monAblTwo !== 'null') {
+        abilitiesDisplay += `, ${monAblTwo}`;
+    }
+
     detailContent.innerHTML =
 `
 <div class="detail-wrapper">
@@ -38,15 +60,15 @@ function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo) {
     <div class="headline-detail ${monTypeOne}">
         <div class="number-detail">#${monNo}</div>
         <span class="name-detail">${monName}</span>
-        <img src="./img/xmark.svg" alt="" class="close-btn-detail">
+        <img onclick="closeDetail()" src="./img/xmark.svg" alt="" class="close-btn-detail">
     </div>
-    <div class="row-detail ${monTypeOne}_bg">
+    <div class="row-detail ${monTypeOne}_bg_detail">
         <div class="type-detail"><span class="type-flag ${monTypeOne}">${monTypeOne}</span></div>
-        <div class="type-detail"><span class="type-flag ${monTypeTwo}">${monTypeTwo}</span></div>
+        ${typeTwoDetail}
     </div>
-    <div class="arrows-detail ${monTypeOne}_bg">
+    <div class="arrows-detail ${monTypeOne}_bg_detail">
         <div class="arrow-detail-left"></div>
-        <div class="image-detail  style="background-image: url('${monPic}')"></div>
+        <div class="image-detail" style="background-image: url('${monPic}')"></div>
         <div class="arrow-detail"></div>
     </div>
 </div>
@@ -61,19 +83,19 @@ function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo) {
         <tbody>
             <tr>
                 <td>Type</td>
-                <td>Grass/Poison</td>
+                <td>${typeDisplay}</td>
             </tr>
             <tr>
                 <td>Height</td>
-                <td>0.7 m</td>
+                <td>${formattedHeight} m</td>
             </tr>
             <tr>
                 <td>Weight</td>
-                <td>6.9 kg</td>
+                <td>${formattedWeight} kg</td>
             </tr>
             <tr>
                 <td>Abilities</td>
-                <td>Overgrow, Chlorophyll</td>
+                <td>${abilitiesDisplay}</td>
             </tr>
         </tbody>
     </table>
@@ -81,3 +103,9 @@ function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo) {
 </div>
 `;
 }
+
+function closeDetail() {
+    let detailContent = document.getElementById('detail-popup');
+    detailContent.classList.add('d-none');
+}
+

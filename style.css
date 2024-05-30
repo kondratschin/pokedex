@@ -150,6 +150,12 @@
     background-size: cover;
 }
 
+.d-none {
+    display: none;
+}
+
+
+
 .grass {
     background-color: rgba(40, 104, 8, 1);
     /* Grün */
@@ -328,4 +334,76 @@
 .fairy_bg {
     background-color: rgba(238, 153, 172, 0.5);
     /* Rosa-Beige with 50% opacity */
+}
+
+.grass_bg_detail {
+    background-color: rgb(147, 179, 131);
+}
+
+.fire_bg_detail {
+    background-color: rgb(247, 191, 151); 
+}
+
+.water_bg_detail {
+    background-color: rgb(179, 199, 247);
+}
+
+.electric_bg_detail {
+    background-color: rgb(251, 231, 151);
+}
+
+.normal_bg_detail {
+    background-color: rgb(211, 211, 187);
+}
+
+.fighting_bg_detail {
+    background-color: rgb(223, 151, 147);
+}
+
+.flying_bg_detail {
+    background-color: rgb(240, 230, 255); /* Very light violet */
+}
+
+.poison_bg_detail {
+    background-color: rgb(207, 159, 207);
+}
+
+.ground_bg_detail {
+    background-color: rgb(239, 223, 179);
+}
+
+.rock_bg_detail {
+    background-color: rgb(219, 207, 155)
+}
+
+.bug_bg_detail {
+    background-color: rgb(211, 219, 143);
+}
+
+.ghost_bg_detail {
+    background-color: rgb(183, 171, 203);
+}
+
+.steel_bg_detail {
+    background-color: rgb(219, 219, 231);
+}
+
+.psychic_bg_detail {
+    background-color: rgb(251, 171, 195);
+}
+
+.ice_bg_detail {
+    background-color: rgb(203, 235, 235);
+}
+
+.dragon_bg_detail {
+    background-color: rgb(183, 155, 251);
+}
+
+.dark_bg_detail {
+    background-color: rgb(183, 171, 163);
+}
+
+.fairy_bg_detail {
+    background-color: rgb(246, 204, 213); 
 }

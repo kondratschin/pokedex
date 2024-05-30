@@ -14,95 +14,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="card.css">
 
 </head>
 
-<body>
- 
+<body onload="fillCards()">
+
     <div class="overflow-wrapper">
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img class="poklogo" src="./img/pokelogo_black.svg" alt="">Pokedex</a>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img class="poklogo" src="./img/pokelogo_black.svg" alt="">Pokedex</a>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-    </nav>
+        </nav>
 
+        <div id="detail-popup" class="detail-popup d-none"></div>
 
+        <div id="content" class="content"></div>
 
-<div id="detail-popup" class="detail-popup"></div>
-
-        <div class="detail-wrapper">
-        <div class="card-detail">
-
-            <div class="headline-detail grass">
-                <div class="number-detail">#001</div>
-                <span class="name-detail">Bulbasaur</span>
-                <img src="./img/xmark.svg" alt="" class="close-btn-detail">
-            </div>
-            <div class="row-detail grass_bg">
-                <div class="type-detail"><span class="type-flag grass">Grass</span></div>
-                <div class="type-detail"><span class="type-flag grass">Poison</span></div>
-            </div>
-            <div class="arrows-detail grass_bg">
-                <div class="arrow-detail-left"></div>
-                <div class="image-detail"></div>
-                <div class="arrow-detail"></div>
-            </div>
-        </div>
-        <div class="stats grass">
-            <table>
-                <thead>
-                    <tr>
-                        <th>About</th>
-                        <th>Base stats</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Type</td>
-                        <td>Grass/Poison</td>
-                    </tr>
-                    <tr>
-                        <td>Height</td>
-                        <td>0.7 m</td>
-                    </tr>
-                    <tr>
-                        <td>Weight</td>
-                        <td>6.9 kg</td>
-                    </tr>
-                    <tr>
-                        <td>Abilities</td>
-                        <td>Overgrow, Chlorophyll</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
-    
-    <div id="content" class="content"></div>
-        <!-- <div class="card">
-            <div class="card-header">
-                <div id="card-no" class="left-text">Left Text</div>
-                <div id="mo-name" class="centered-text">Centered Text</div>
-            </div>
-            <div class="card-image">
-    
-            </div>
-            <div class="card-icons">
-                <img src="https://via.placeholder.com/30" alt="Icon 1">
-                <img src="https://via.placeholder.com/30" alt="Icon 2">
-                <img src="https://via.placeholder.com/30" alt="Icon 3">
-            </div>
-        </div> -->
-
-
-</div>
 
     </div>
 </body>

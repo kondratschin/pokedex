@@ -114,8 +114,6 @@
     background-position: center;
     height: 90%;
     width: 60%;
-    background-image: url(//raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/2.png);
-
 }
 
 .stats {
@@ -141,3 +139,15 @@ th, td {
     text-align: left;
 }
 
+.detail-popup {
+    background-color: rgba(255, 255, 255, 0.829);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

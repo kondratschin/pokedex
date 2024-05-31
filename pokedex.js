@@ -79,8 +79,9 @@ function loadMore() {
 }
 
 
-async function loadFoundMon(index) {
-    let MON_URL = `https://pokeapi.co/api/v2/pokemon/${index}/`;
+async function loadFoundMon(number, index) {
+    let content = document.getElementById('content');
+    let MON_URL = `https://pokeapi.co/api/v2/pokemon/${number}/`;
     let response = await fetch(MON_URL);
     let pokemon = await response.json();
     let monPic = pokemon.sprites.other.home.front_default;
@@ -99,7 +100,22 @@ async function loadFoundMon(index) {
     if (pokemon.abilities[1]) {
         monAblTwo = pokemon.abilities[1].ability.name;
     }
-    loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+    pokemonData.push({
+        monNo: monNo,
+        monName: monName,
+        monPic: monPic,
+        monTypeOne: monTypeOne,
+        monTypeTwo: monTypeTwo,
+        monHgt: monHgt,
+        monWgt: monWgt,
+        monAblOne: monAblOne,
+        monAblTwo: monAblTwo
+    });
+
+    let card = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+    content.innerHTML += card;
+
+
 }
 
 
@@ -111,20 +127,6 @@ async function loadTotalCount() {
     listAllNames();
 }
 
-
-
-
-// create a function listAllNames() which parses 'pokemon' and saves the names from 'monName' and the number from 'monNo' to an array which is saved locally, the quantity of names is 'totalCount' which has been set already globally  ,
-// 'response' fetches 20 names per loop if 'offset = 20;' its allowed to increase the offset by 20, this list should only be created if it doesnt exist locally. use this cata:
-
-// let offset = 20;
-// let MON_URL = `https://pokeapi.co/api/v2/pokemon?offset=`${offset}`&limit=20/`;
-// let response = await fetch(MON_URL);
-// let pokemon = await response.json();
-
-// let monName = pokemon.species.name;
-
-// let monNo = index;
 
 function load() {
     let postsJSON = localStorage.getItem('posts');
@@ -148,14 +150,15 @@ async function listAllNames() {
         pokemonList = [];
         let offset = 0;
 
-        // // Fetch data in a loop until we have all Pokémon names
+        // Fetch data in a loop until we have all Pokémon names
         while (offset < totalCount) {
             const responseTotal = await fetch(`${MON_URL}?offset=${offset}&limit=20`);
             const data = await responseTotal.json();
             for (let i = 0; i < data.results.length; i++) {
                 const monNames = data.results[i].name;
-                const monNumbers = i + 1; // MonNo starts from 1
-                pokemonList.push({ monNames, monNumbers });
+                const monURL = data.results[i].url;
+                const monID = monURL.match(/\/(\d+)\//)[1]; // Extract the number from the URL
+                pokemonList.push({ monNames, monID });
             }
             offset += limit;
         }
@@ -163,7 +166,9 @@ async function listAllNames() {
         // Save to localStorage
         localStorage.setItem(storageKey, JSON.stringify(pokemonList));
         console.log("Fetched from API and saved locally.");
-        return pokemonList;
+        allPokemon = pokemonList;
     }
+    return allPokemon;
 }
+
 

@@ -1,6 +1,6 @@
 function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
     let card = `
-    <div onclick="loadDetail('${index - 1}', '${monNo}', '${monName}', '${monPic}', '${monTypeOne}', '${monTypeTwo}', '${monHgt}', '${monWgt}', '${monAblOne}', '${monAblTwo}')" class="card">
+    <div onclick="loadDetail('${index}', '${monNo}', '${monName}', '${monPic}', '${monTypeOne}', '${monTypeTwo}', '${monHgt}', '${monWgt}', '${monAblOne}', '${monAblTwo}')" class="card">
         <div class="card-header ${monTypeOne}">
             <div id="card-no-${index}" class="left-text">#${monNo}</div>
             <div id="mo-name-${index}" class="centered-text">${monName}</div>
@@ -60,7 +60,7 @@ function loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
     <div class="headline-detail ${monTypeOne}">
         <div class="number-detail">#${monNo}</div>
         <span class="name-detail">${monName}</span>
-        <img onclick="closeDetail()" src="./img/xmark.svg" alt="" class="close-btn-detail">
+        <img onclick="displayNone('detail-popup')" src="./img/xmark.svg" alt="" class="close-btn-detail">
     </div>
     <div class="row-detail ${monTypeOne}_bg_detail">
         <div class="type-detail"><span class="type-flag ${monTypeOne}">${monTypeOne}</span></div>
@@ -104,9 +104,15 @@ function loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
 `;
 }
 
-function closeDetail() {
-    let detailContent = document.getElementById('detail-popup');
+function displayNone(id) {
+    let detailContent = document.getElementById(`${id}`);
     detailContent.classList.add('d-none');
+}
+
+
+function displayOn(id) {
+    let detailContent = document.getElementById(`${id}`);
+    detailContent.classList.remove('d-none');
 }
 
 

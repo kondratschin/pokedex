@@ -7,29 +7,28 @@ let allPokemon = [];
 
 
 async function loadDataMon() {
-    let MON_URL = "https://pokeapi.co/api/v2/pokemon/";
+    let MON_URL = "https://pokeapi.co/api/v2/pokemon/1/";
     let response = await fetch(MON_URL);
     let responseToJson = await response.json();
     // let monPic = responseToJson.sprites.other.home.front_default;
     // let monTyp1 = responseToJson.types[0].type.name;
     // let monName = responseToJson.species.name;
     // let monNo = responseToJson.order;
-    let count = responseToJson.results[0].name;
+    // let count = responseToJson.results[0].name;
     console.log(responseToJson);
-    console.log(count);
+    // console.log(count);
 };
 
 
 async function fillCards() {
     let content = document.getElementById('content');
-    // content.innerHTML = '';
     let newNumber = loadAmount - 19;
 
-    for (let index = newNumber; index <= loadAmount; index++) {
-        let MON_URL = `https://pokeapi.co/api/v2/pokemon/${index}/`;
+    for (let index = newNumber - 1; index <= loadAmount - 1; index++) {
+        let MON_URL = `https://pokeapi.co/api/v2/pokemon/${index + 1}/`;
         let response = await fetch(MON_URL);
         let pokemon = await response.json();
-        let monPic = pokemon.sprites.other.home.front_default;
+        let monPic = pokemon.sprites.other["official-artwork"].front_default;
         let monName = pokemon.species.name;
         let monTypeOne = pokemon.types[0].type.name;
         let monNo = pokemon.id;
@@ -84,7 +83,7 @@ async function loadFoundMon(number, index) {
     let MON_URL = `https://pokeapi.co/api/v2/pokemon/${number}/`;
     let response = await fetch(MON_URL);
     let pokemon = await response.json();
-    let monPic = pokemon.sprites.other.home.front_default;
+    let monPic = pokemon.sprites.other["official-artwork"].front_default;
     let monName = pokemon.species.name;
     let monTypeOne = pokemon.types[0].type.name;
     let monNo = pokemon.id;
@@ -112,8 +111,8 @@ async function loadFoundMon(number, index) {
         monAblTwo: monAblTwo
     });
 
-    let card = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
-    content.innerHTML += card;
+    let filteredCard = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+    content.innerHTML += filteredCard;
 
 
 }

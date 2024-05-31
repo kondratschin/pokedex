@@ -17,10 +17,19 @@
     src: url("./fonts/NunitoSans-variable.woff2") format('woff2');
 }
 
+.navbar-brand {
+    left: 0px;
+    position: absolute;
+    margin-left: 1rem;
+}
+
+
 .container-fluid {
     height: 4rem;
     background-color: rgb(0, 0, 70);
     color: #ffffff;
+    justify-content: center !important;
+
 }
 
 .navbar-brand {
@@ -345,7 +354,7 @@
 }
 
 .fire_bg_detail {
-    background-color: rgb(247, 191, 151); 
+    background-color: rgb(247, 191, 151);
 }
 
 .water_bg_detail {
@@ -365,7 +374,8 @@
 }
 
 .flying_bg_detail {
-    background-color: rgb(240, 230, 255); /* Very light violet */
+    background-color: rgb(240, 230, 255);
+    /* Very light violet */
 }
 
 .poison_bg_detail {
@@ -409,5 +419,5 @@
 }
 
 .fairy_bg_detail {
-    background-color: rgb(246, 204, 213); 
+    background-color: rgb(246, 204, 213);
 }

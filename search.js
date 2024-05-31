@@ -5,9 +5,17 @@ async function search() {
     let searchField = document.getElementById("searchMon");
     if (searchField.value.length >= 3) {
         pokemonData = [];
+        displayNone('loadMoreBtn');
         document.getElementById('content').innerHTML = ""; // Clear content if search query is at least 3 characters long
         await fetchSearchData(searchField);
-        displayFilteredList();
+        await displayFilteredList();
+    }
+    else if ((searchField.value.length == 0)) {
+        document.getElementById("content").innerHTML = "";
+        loadAmount = 20;
+        pokemonData = [];
+        fillCards();
+        displayOn('loadMoreBtn');
     }
 }
 
@@ -31,7 +39,7 @@ async function displayFilteredList() {
     console.log(filteredList);
     loadAmount = filteredList.length;
     for (let index = 0; index < filteredList.length; index++) {
-        let monNo = filteredList[index].monID; // Assuming monNo is the ID you're referring to
+        let monNo = filteredList[index].monID;
         await loadFoundMon(monNo, index);
     }
 

@@ -1,6 +1,6 @@
 function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
     let card = `
-    <div onclick="loadDetail('${monNo}', '${monName}', '${monPic}', '${monTypeOne}', '${monTypeTwo}', '${monHgt}', '${monWgt}', '${monAblOne}', '${monAblTwo}')" class="card">
+    <div onclick="loadDetail('${index - 1}', '${monNo}', '${monName}', '${monPic}', '${monTypeOne}', '${monTypeTwo}', '${monHgt}', '${monWgt}', '${monAblOne}', '${monAblTwo}')" class="card">
         <div class="card-header ${monTypeOne}">
             <div id="card-no-${index}" class="left-text">#${monNo}</div>
             <div id="mo-name-${index}" class="centered-text">${monName}</div>
@@ -27,7 +27,7 @@ function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
     return card;
 }
 
-function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
+function loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
     let detailContent = document.getElementById('detail-popup');
     detailContent.classList.remove('d-none');
     // Initialize type details and type display
@@ -35,7 +35,7 @@ function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monW
     let typeDisplay = monTypeOne;
 
     // Check if monTypeTwo is not 'null' and update the details accordingly
-    if (monTypeTwo !== 'null') {
+    if (monTypeTwo && monTypeTwo !== 'null') {
         typeTwoDetail = `<div class="type-detail"><span class="type-flag ${monTypeTwo}">${monTypeTwo}</span></div>`;
         typeDisplay += ` / ${monTypeTwo}`;
     }
@@ -48,7 +48,7 @@ function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monW
     let abilitiesDisplay = monAblOne;
 
     // Check if monAblTwo is not 'null' and update the abilities display accordingly
-    if (monAblTwo !== 'null') {
+    if (monAblTwo && monAblTwo !== 'null') {
         abilitiesDisplay += `, ${monAblTwo}`;
     }
 
@@ -67,9 +67,9 @@ function loadDetail(monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monW
         ${typeTwoDetail}
     </div>
     <div class="arrows-detail ${monTypeOne}_bg_detail">
-        <div class="arrow-detail-left"></div>
+        <div onclick="loadMon(${index - 1})" class="arrow-detail-left"></div>
         <div class="image-detail" style="background-image: url('${monPic}')"></div>
-        <div class="arrow-detail"></div>
+        <div onclick="loadMon(${index +++ 1})" class="arrow-detail"></div>
     </div>
 </div>
 <div class="stats ${monTypeOne}">
@@ -108,4 +108,28 @@ function closeDetail() {
     let detailContent = document.getElementById('detail-popup');
     detailContent.classList.add('d-none');
 }
+
+
+function loadMon(i) {
+    let index;
+    if (i === -1) {
+        index = loadAmount - 1;
+    } else if (i === loadAmount) {
+        index = 0;
+    } else {
+        index = i;
+    }
+
+    let monNo = pokemonData[index].monNo;
+    let monName = pokemonData[index].monName;
+    let monPic = pokemonData[index].monPic;
+    let monTypeOne = pokemonData[index].monTypeOne;
+    let monTypeTwo = pokemonData[index].monTypeTwo;
+    let monHgt = pokemonData[index].monHgt;
+    let monWgt = pokemonData[index].monWgt;
+    let monAblOne = pokemonData[index].monAblOne;
+    let monAblTwo = pokemonData[index].monAblTwo;
+    loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+}
+
 

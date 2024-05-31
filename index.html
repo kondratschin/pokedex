@@ -19,7 +19,7 @@
 
 </head>
 
-<body onload="fillCards()">
+<body onload="fillCards(), loadTotalCount()">
 
     <div class="overflow-wrapper">
 
@@ -36,6 +36,7 @@
         <div id="detail-popup" class="detail-popup d-none"></div>
 
         <div id="content" class="content"></div>
+ <button onclick="loadMore()">load more</button>
 
     </div>
 

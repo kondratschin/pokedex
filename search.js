@@ -1,12 +1,12 @@
 let filteredList = [];
 
-// Define the search function
+
 async function search() {
     let searchField = document.getElementById("searchMon");
     if (searchField.value.length >= 3) {
         pokemonData = [];
         displayNone('loadMoreBtn');
-        document.getElementById('content').innerHTML = ""; // Clear content if search query is at least 3 characters long
+        document.getElementById('content').innerHTML = "";
         await fetchSearchData(searchField);
         await displayFilteredList();
     }
@@ -19,11 +19,12 @@ async function search() {
     }
 }
 
-// Add event listener directly to the input field after the DOM has loaded
+
 document.addEventListener("DOMContentLoaded", function () {
     let searchField = document.getElementById("searchMon");
     searchField.addEventListener("input", search);
 });
+
 
 async function fetchSearchData(searchField) {
     try {
@@ -37,10 +38,12 @@ async function fetchSearchData(searchField) {
 async function displayFilteredList() {
     console.log("Filtered List:");
     console.log(filteredList);
+    if (filteredList.length > 10) {
+        filteredList.length = 10;
+    }
     loadAmount = filteredList.length;
     for (let index = 0; index < filteredList.length; index++) {
         let monNo = filteredList[index].monID;
         await loadFoundMon(monNo, index);
     }
-
 }

@@ -1,23 +1,8 @@
-
 let pokemonData = [];
 let loadAmount = 20;
 let BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=`${loadAmount}`&offset=10";
 let totalCount = [];
 let allPokemon = [];
-
-
-async function loadDataMon() {
-    let MON_URL = "https://pokeapi.co/api/v2/pokemon/1/";
-    let response = await fetch(MON_URL);
-    let responseToJson = await response.json();
-    // let monPic = responseToJson.sprites.other.home.front_default;
-    // let monTyp1 = responseToJson.types[0].type.name;
-    // let monName = responseToJson.species.name;
-    // let monNo = responseToJson.order;
-    // let count = responseToJson.results[0].name;
-    console.log(responseToJson);
-    // console.log(count);
-};
 
 
 async function fillCards() {
@@ -37,27 +22,20 @@ async function fillCards() {
         let monAblOne = pokemon.abilities[0].ability.name;
         monName = monName.charAt(0).toUpperCase() + monName.slice(1);
 
-        // Initialize monTypeTwo to null
         let monTypeTwo = null;
-        // Check if the second type exists and assign its name to monTypeTwo
         if (pokemon.types[1]) {
             monTypeTwo = pokemon.types[1].type.name;
         }
 
-        // Initialize monAblTwo to null
         let monAblTwo = null;
-        // Check if the second ability exists and assign its name to monAblTwo
         if (pokemon.abilities[1]) {
             monAblTwo = pokemon.abilities[1].ability.name;
         }
 
-        // Create the card HTML using the external function
         let card = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
 
-        // Append the card to the content
         content.innerHTML += card;
 
-        // Save Pokémon data to global array
         pokemonData.push({
             monNo: monNo,
             monName: monName,
@@ -71,6 +49,7 @@ async function fillCards() {
         });
     }
 }
+
 
 function loadMore() {
     loadAmount += 20;
@@ -113,8 +92,6 @@ async function loadFoundMon(number, index) {
 
     let filteredCard = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
     content.innerHTML += filteredCard;
-
-
 }
 
 
@@ -135,12 +112,13 @@ function load() {
 }
 
 
+// to reduce api requests, I made this code. it saves the names, url and id and also the search function is using this its requested once and saved locally
 async function listAllNames() {
     const storageKey = 'pokemon_list';
     const MON_URL = "https://pokeapi.co/api/v2/pokemon";
     const limit = 20;
 
-    // Check if the list exists in localStorage
+ 
     let pokemonList = localStorage.getItem(storageKey);
     if (pokemonList !== null && pokemonList !== "[]") {
         console.log("Loaded from local storage.");
@@ -149,20 +127,18 @@ async function listAllNames() {
         pokemonList = [];
         let offset = 0;
 
-        // Fetch data in a loop until we have all Pokémon names
         while (offset < totalCount) {
             const responseTotal = await fetch(`${MON_URL}?offset=${offset}&limit=20`);
             const data = await responseTotal.json();
             for (let i = 0; i < data.results.length; i++) {
                 const monNames = data.results[i].name;
                 const monURL = data.results[i].url;
-                const monID = monURL.match(/\/(\d+)\//)[1]; // Extract the number from the URL
+                const monID = monURL.match(/\/(\d+)\//)[1];
                 pokemonList.push({ monNames, monID });
             }
             offset += limit;
         }
 
-        // Save to localStorage
         localStorage.setItem(storageKey, JSON.stringify(pokemonList));
         console.log("Fetched from API and saved locally.");
         allPokemon = pokemonList;
@@ -170,4 +146,46 @@ async function listAllNames() {
     return allPokemon;
 }
 
+function closeDetailCard() {
+    const detailContainer = document.getElementById("detail-popup");
+    detailContainer.addEventListener('click', (event) => {
+        if (event.target === detailContainer) {
+            displayNone('detail-popup');
+        }
+    });
+}
+
+
+function displayNone(id) {
+    document.getElementById(id).classList.add('d-none');
+    document.body.classList.remove('no-scroll');
+}
+
+
+function displayOn(id) {
+    document.getElementById(id).classList.remove('d-none');
+}
+
+
+function loadMon(i) {
+    let index;
+    if (i === -1) {
+        index = loadAmount - 1;
+    } else if (i === loadAmount) {
+        index = 0;
+    } else {
+        index = i;
+    }
+
+    let monNo = pokemonData[index].monNo;
+    let monName = pokemonData[index].monName;
+    let monPic = pokemonData[index].monPic;
+    let monTypeOne = pokemonData[index].monTypeOne;
+    let monTypeTwo = pokemonData[index].monTypeTwo;
+    let monHgt = pokemonData[index].monHgt;
+    let monWgt = pokemonData[index].monWgt;
+    let monAblOne = pokemonData[index].monAblOne;
+    let monAblTwo = pokemonData[index].monAblTwo;
+    loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+}
 

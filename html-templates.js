@@ -11,14 +11,12 @@ function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
             <div class="types" id="type-one" style="background-image: url('img/${monTypeOne}.svg');"></div>
     `;
 
-    // Add the second type if it exists
     if (monTypeTwo) {
         card += `
             <div class="types" id="type-two" style="background-image: url('img/${monTypeTwo}.svg');"></div>
         `;
     }
 
-    // Close the card-icons and card divs
     card += `
         </div>
     </div>
@@ -30,24 +28,20 @@ function createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
 function loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo) {
     let detailContent = document.getElementById('detail-popup');
     detailContent.classList.remove('d-none');
-    // Initialize type details and type display
+    document.getElementsByTagName("body")[0].classList.add('no-scroll');
+    closeDetailCard();
     let typeTwoDetail = '';
     let typeDisplay = monTypeOne;
-
-    // Check if monTypeTwo is not 'null' and update the details accordingly
     if (monTypeTwo && monTypeTwo !== 'null') {
         typeTwoDetail = `<div class="type-detail"><span class="type-flag ${monTypeTwo}">${monTypeTwo}</span></div>`;
         typeDisplay += ` / ${monTypeTwo}`;
     }
 
-    // Convert height to centimeters and format weight to two decimal places
     let formattedHeight = (parseFloat(monHgt) / 10);
     let formattedWeight = (parseFloat(monWgt) / 10);
 
-    // Initialize abilities display
     let abilitiesDisplay = monAblOne;
 
-    // Check if monAblTwo is not 'null' and update the abilities display accordingly
     if (monAblTwo && monAblTwo !== 'null') {
         abilitiesDisplay += `, ${monAblTwo}`;
     }
@@ -103,39 +97,3 @@ function loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
 </div>
 `;
 }
-
-function displayNone(id) {
-    let detailContent = document.getElementById(`${id}`);
-    detailContent.classList.add('d-none');
-}
-
-
-function displayOn(id) {
-    let detailContent = document.getElementById(`${id}`);
-    detailContent.classList.remove('d-none');
-}
-
-
-function loadMon(i) {
-    let index;
-    if (i === -1) {
-        index = loadAmount - 1;
-    } else if (i === loadAmount) {
-        index = 0;
-    } else {
-        index = i;
-    }
-
-    let monNo = pokemonData[index].monNo;
-    let monName = pokemonData[index].monName;
-    let monPic = pokemonData[index].monPic;
-    let monTypeOne = pokemonData[index].monTypeOne;
-    let monTypeTwo = pokemonData[index].monTypeTwo;
-    let monHgt = pokemonData[index].monHgt;
-    let monWgt = pokemonData[index].monWgt;
-    let monAblOne = pokemonData[index].monAblOne;
-    let monAblTwo = pokemonData[index].monAblTwo;
-    loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
-}
-
-

@@ -27,6 +27,8 @@ function createCard(index, { monNo, monName, monPic, monTypeOne, monTypeTwo, mon
 
 
 function generateDetailHTML(index, monNo, monName, monPic, monTypeOne, typeTwoDetail, typeDisplay, formattedHeight, formattedWeight, abilitiesDisplay) {
+    let nextMon = index +++ 1;
+    let preMon = index - 2;
     return `
     <div class="detail-wrapper">
         <div class="card-detail">
@@ -40,9 +42,9 @@ function generateDetailHTML(index, monNo, monName, monPic, monTypeOne, typeTwoDe
                 ${typeTwoDetail}
             </div>
             <div class="arrows-detail ${monTypeOne}_bg_detail">
-                <div onclick="loadMon(${index - 1})" class="arrow-detail-left"></div>
+                <div onclick="loadMon(${preMon})" class="arrow-detail-left"></div>
                 <div class="image-detail" style="background-image: url('${monPic}')"></div>
-                <div onclick="loadMon(${index + 1})" class="arrow-detail"></div>
+                <div onclick="loadMon(${nextMon})" class="arrow-detail"></div>
             </div>
         </div>
         <div class="stats ${monTypeOne}">

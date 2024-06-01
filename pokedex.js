@@ -3,12 +3,13 @@ let loadAmount = 20;
 let BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=`${loadAmount}`&offset=10";
 let totalCount = [];
 let allPokemon = [];
+let loadingScreen = document.getElementById("loading_screen");
 
 
 async function fillCards() {
     let content = document.getElementById('content');
     let newNumber = loadAmount - 19;
-
+    displayOn('loading');
     for (let index = newNumber - 1; index < loadAmount; index++) {
         let pokemon = await fetchPokemon(index + 1);
         let card = createCard(index, pokemon);
@@ -17,6 +18,7 @@ async function fillCards() {
 
         pokemonData.push(pokemon);
     }
+    displayNone('loading');
 }
 
 

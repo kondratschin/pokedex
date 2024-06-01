@@ -1,0 +1,191 @@
+let pokemonData = [];
+let loadAmount = 20;
+let BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=`${loadAmount}`&offset=10";
+let totalCount = [];
+let allPokemon = [];
+
+
+async function fillCards() {
+    let content = document.getElementById('content');
+    let newNumber = loadAmount - 19;
+
+    for (let index = newNumber - 1; index <= loadAmount - 1; index++) {
+        let MON_URL = `https://pokeapi.co/api/v2/pokemon/${index + 1}/`;
+        let response = await fetch(MON_URL);
+        let pokemon = await response.json();
+        let monPic = pokemon.sprites.other["official-artwork"].front_default;
+        let monName = pokemon.species.name;
+        let monTypeOne = pokemon.types[0].type.name;
+        let monNo = pokemon.id;
+        let monHgt = pokemon.height;
+        let monWgt = pokemon.weight;
+        let monAblOne = pokemon.abilities[0].ability.name;
+        monName = monName.charAt(0).toUpperCase() + monName.slice(1);
+
+        let monTypeTwo = null;
+        if (pokemon.types[1]) {
+            monTypeTwo = pokemon.types[1].type.name;
+        }
+
+        let monAblTwo = null;
+        if (pokemon.abilities[1]) {
+            monAblTwo = pokemon.abilities[1].ability.name;
+        }
+
+        let card = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+
+        content.innerHTML += card;
+
+        pokemonData.push({
+            monNo: monNo,
+            monName: monName,
+            monPic: monPic,
+            monTypeOne: monTypeOne,
+            monTypeTwo: monTypeTwo,
+            monHgt: monHgt,
+            monWgt: monWgt,
+            monAblOne: monAblOne,
+            monAblTwo: monAblTwo
+        });
+    }
+}
+
+
+function loadMore() {
+    loadAmount += 20;
+    fillCards();
+}
+
+
+async function loadFoundMon(number, index) {
+    let content = document.getElementById('content');
+    let MON_URL = `https://pokeapi.co/api/v2/pokemon/${number}/`;
+    let response = await fetch(MON_URL);
+    let pokemon = await response.json();
+    let monPic = pokemon.sprites.other["official-artwork"].front_default;
+    let monName = pokemon.species.name;
+    let monTypeOne = pokemon.types[0].type.name;
+    let monNo = pokemon.id;
+    let monHgt = pokemon.height;
+    let monWgt = pokemon.weight;
+    let monAblOne = pokemon.abilities[0].ability.name;
+    monName = monName.charAt(0).toUpperCase() + monName.slice(1);
+    let monTypeTwo = null;
+    if (pokemon.types[1]) {
+        monTypeTwo = pokemon.types[1].type.name;
+    }
+    let monAblTwo = null;
+    if (pokemon.abilities[1]) {
+        monAblTwo = pokemon.abilities[1].ability.name;
+    }
+    pokemonData.push({
+        monNo: monNo,
+        monName: monName,
+        monPic: monPic,
+        monTypeOne: monTypeOne,
+        monTypeTwo: monTypeTwo,
+        monHgt: monHgt,
+        monWgt: monWgt,
+        monAblOne: monAblOne,
+        monAblTwo: monAblTwo
+    });
+
+    let filteredCard = createCard(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+    content.innerHTML += filteredCard;
+}
+
+
+async function loadTotalCount() {
+    let MON_URL = "https://pokeapi.co/api/v2/pokemon/";
+    let pokemon = await fetch(MON_URL);
+    let pokemonToJson = await pokemon.json();
+    totalCount = pokemonToJson.count;
+    listAllNames();
+}
+
+
+function load() {
+    let postsJSON = localStorage.getItem('posts');
+    if (postsJSON !== null) {
+        posts = JSON.parse(postsJSON);
+    }
+}
+
+
+// to reduce api requests, I made this code. it saves the names, url and id and also the search function is using this its requested once and saved locally
+async function listAllNames() {
+    const storageKey = 'pokemon_list';
+    const MON_URL = "https://pokeapi.co/api/v2/pokemon";
+    const limit = 20;
+
+ 
+    let pokemonList = localStorage.getItem(storageKey);
+    if (pokemonList !== null && pokemonList !== "[]") {
+        console.log("Loaded from local storage.");
+        allPokemon = JSON.parse(pokemonList);
+    } else {
+        pokemonList = [];
+        let offset = 0;
+
+        while (offset < totalCount) {
+            const responseTotal = await fetch(`${MON_URL}?offset=${offset}&limit=20`);
+            const data = await responseTotal.json();
+            for (let i = 0; i < data.results.length; i++) {
+                const monNames = data.results[i].name;
+                const monURL = data.results[i].url;
+                const monID = monURL.match(/\/(\d+)\//)[1];
+                pokemonList.push({ monNames, monID });
+            }
+            offset += limit;
+        }
+
+        localStorage.setItem(storageKey, JSON.stringify(pokemonList));
+        console.log("Fetched from API and saved locally.");
+        allPokemon = pokemonList;
+    }
+    return allPokemon;
+}
+
+function closeDetailCard() {
+    const detailContainer = document.getElementById("detail-popup");
+    detailContainer.addEventListener('click', (event) => {
+        if (event.target === detailContainer) {
+            displayNone('detail-popup');
+        }
+    });
+}
+
+
+function displayNone(id) {
+    document.getElementById(id).classList.add('d-none');
+    document.body.classList.remove('no-scroll');
+}
+
+
+function displayOn(id) {
+    document.getElementById(id).classList.remove('d-none');
+}
+
+
+function loadMon(i) {
+    let index;
+    if (i === -1) {
+        index = loadAmount - 1;
+    } else if (i === loadAmount) {
+        index = 0;
+    } else {
+        index = i;
+    }
+
+    let monNo = pokemonData[index].monNo;
+    let monName = pokemonData[index].monName;
+    let monPic = pokemonData[index].monPic;
+    let monTypeOne = pokemonData[index].monTypeOne;
+    let monTypeTwo = pokemonData[index].monTypeTwo;
+    let monHgt = pokemonData[index].monHgt;
+    let monWgt = pokemonData[index].monWgt;
+    let monAblOne = pokemonData[index].monAblOne;
+    let monAblTwo = pokemonData[index].monAblTwo;
+    loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHgt, monWgt, monAblOne, monAblTwo);
+}
+

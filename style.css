@@ -261,9 +261,6 @@
     }
 }
 
-
-
-
 @media (max-width: 380px) {
     .form-control {
         width: 60%;
@@ -285,7 +282,6 @@
         width: 1.5rem;
     }
 }
-
 
 /* colors */
 

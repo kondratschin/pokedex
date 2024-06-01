@@ -19,6 +19,7 @@ async function fillCards() {
     }
 }
 
+
 async function fetchPokemon(id) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
     let data = await response.json();
@@ -160,11 +161,13 @@ function loadDetail(index, monNo, monName, monPic, monTypeOne, monTypeTwo, monHg
     detailContent.innerHTML = generateDetailHTML(index, monNo, monName, monPic, monTypeOne, typeTwoDetail, typeDisplay, formattedHeight, formattedWeight, abilitiesDisplay);
 }
 
+
 function showDetailContent(detailContent) {
     detailContent.classList.remove('d-none');
     document.getElementsByTagName("body")[0].classList.add('no-scroll');
     closeDetailCard();
 }
+
 
 function getTypeDetail(monTypeTwo) {
     let typeTwoDetail = '';
@@ -173,6 +176,7 @@ function getTypeDetail(monTypeTwo) {
     }
     return typeTwoDetail;
 }
+
 
 function generateAbilitiesDisplay(monAblOne, monAblTwo) {
     let abilitiesDisplay = monAblOne;
